@@ -1,0 +1,54 @@
+
+
+Crear una variable de SESSION de nombre name ,cuyo valor es "mauro";
+$this->session->set_userdata("name","mauro");     ==              $_SESSION["name"] = "mauro";
+
+
+
+Tambíen podemos crear variables de sesion por medio de un array
+
+$variables = array("name" => "mauro", "access" => true); ==     $_SESSION["name"] = "mauro";$_SESSION["access"] = true;
+
+$this->session->set_userdata($variables);
+
+
+
+
+Comprobamos si existe la sesion , de lo contrario nos negará el acceso a la vista
+	
+if(!$this->session->has_userdata("access")){redirect(base_url());}    ==   if(!isset($_SESSION['access'])){ header("location :ruta.php");}
+
+
+
+
+Imprimimos una variable de sessión existente
+
+<?= $this->session->userdata("name"); ?>                ==              <?= $_SESSION["name"] ?>
+
+
+
+
+Imprimir Mensajes instantaneos luego de realizar una accion,por ejemplo acá imprimo un mensaje de nombre "eliminado" ,cuyo contenido es un texto que dice "has eliminado un empleado".
+
+$this->session->set_flashdata("eliminado","Has Eliminado un empleado ! ");
+
+
+
+
+
+Para imprimir este mensaje  usamos el siguiente codigo con el nombre del mensaje . 
+ $this->session->flasdata("eliminado");
+
+
+
+
+Eliminar variables de sesion
+$this->session->unset_userdata("name");
+
+
+
+
+Destruimos la sesion
+
+$this->session->sess_destroy();           ==          session_destroy();
+
